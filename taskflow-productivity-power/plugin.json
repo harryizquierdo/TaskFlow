@@ -1,0 +1,15 @@
+﻿{
+  "name": "taskflow-productivity-power",
+  "version": "1.0.0",
+  "description": "Power para analizar, priorizar y dividir tareas de productividad dentro de proyectos TaskFlow.",
+  "author": {
+    "name": "TaskFlow Team"
+  },
+  "keywords": [
+    "task-management",
+    "productivity",
+    "prioritization",
+    "planning",
+    "taskflow"
+  ]
+}
