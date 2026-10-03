@@ -1,0 +1,16 @@
+﻿{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "protect-spec-files",
+      "description": "Evita modificaciones accidentales sobre archivos de especificación",
+      "enabled": true,
+      "trigger": "PreTaskExec",
+      "action": {
+        "type": "agent",
+        "prompt": "Antes de modificar archivos dentro de .kiro/specs, verifica que el cambio esté justificado y mantenga la trazabilidad entre requirements.md, design.md y tasks.md. Si existe riesgo de inconsistencia, detén la ejecución."
+      },
+      "confirm": true
+    }
+  ]
+}

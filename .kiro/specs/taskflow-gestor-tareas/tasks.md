@@ -43,3 +43,11 @@
   - _Requirements: 1.1, 2.1, 3.1, 4.1_
   - _Evidence: tests/taskflow.spec.ts_
   - _Depends on: 3, 5, 6_
+
+- [x] 8. Implementar Property-Based Testing con fast-check
+  - Cubrir las 4 propiedades definidas en el diseño: persistencia consistente, toggle reversible, filtrado coherente y estabilidad ante IDs inexistentes.
+  - Usar fast-check como generador de entradas aleatorias y Vitest como runner.
+  - El adaptador debe ser simulado en memoria para aislar las propiedades del navegador.
+  - _Requirements: 1.1, 2.1, 2.2, 3.1, 4.1, 4.3_
+  - _Evidence: tests/property/taskService.property.test.ts_
+  - _Depends on: 2_
