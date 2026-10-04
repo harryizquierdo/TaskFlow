@@ -9,7 +9,7 @@ import styles from './App.module.css'
  * Orquesta el estado central (useTasks) y compone la UI.
  */
 export function App() {
-  const { tasks, filter, counts, addTask, toggleTask, changeFilter } = useTasks()
+  const { tasks, filter, counts, addTask, toggleTask, changeFilter, deleteTask } = useTasks()
 
   return (
     <div className={styles.app}>
@@ -27,7 +27,7 @@ export function App() {
             onFilterChange={changeFilter}
             counts={counts}
           />
-          <TaskList tasks={tasks} filter={filter} onToggle={toggleTask} />
+          <TaskList tasks={tasks} filter={filter} onToggle={toggleTask} onDelete={deleteTask} />
         </section>
       </main>
 

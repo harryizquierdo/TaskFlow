@@ -45,6 +45,17 @@ export function useTasks() {
     setFilter(next)
   }, [])
 
+  /**
+   * Elimina una tarea completada por su ID (Req 2.3, 2.4).
+   * Si el servicio no encuentra el ID, el estado no cambia.
+   */
+  const deleteTask = useCallback((id: string) => {
+    const success = service.deleteTask(id)
+    if (success) {
+      setTasks((prev) => prev.filter((t) => t.id !== id))
+    }
+  }, [])
+
   // Conteos para FilterBar
   const counts = {
     all: tasks.length,
@@ -52,5 +63,5 @@ export function useTasks() {
     completed: tasks.filter((t) => t.completed).length,
   }
 
-  return { tasks, filter, counts, addTask, toggleTask, changeFilter }
+  return { tasks, filter, counts, addTask, toggleTask, changeFilter, deleteTask }
 }

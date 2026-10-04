@@ -100,6 +100,43 @@ describe('TaskService', () => {
     })
   })
 
+  // ─── Req 2.3, 2.5: deleteTask ───────────────────────────────────────────
+  describe('deleteTask()', () => {
+    it('elimina una tarea existente y devuelve true (Req 2.3)', () => {
+      const task = service.create({ title: 'Eliminar esta' })
+      const result = service.deleteTask(task.id)
+      expect(result).toBe(true)
+      expect(service.getAll()).toHaveLength(0)
+    })
+
+    it('persiste el array resultante tras eliminar (Req 2.3)', () => {
+      service.create({ title: 'Tarea A' })
+      const taskB = service.create({ title: 'Tarea B' })
+      service.create({ title: 'Tarea C' })
+      service.deleteTask(taskB.id)
+      const remaining = service.getAll()
+      expect(remaining).toHaveLength(2)
+      expect(remaining.map((t) => t.title)).toEqual(['Tarea A', 'Tarea C'])
+    })
+
+    it('devuelve false y no modifica nada si el ID no existe (Req 2.5)', () => {
+      service.create({ title: 'Tarea real' })
+      const before = service.getAll()
+      const result = service.deleteTask('id-inexistente-xyz')
+      expect(result).toBe(false)
+      expect(service.getAll()).toEqual(before)
+    })
+
+    it('registra un error en consola si el ID no existe (Req 2.5)', () => {
+      const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      service.deleteTask('id-que-no-existe')
+      expect(spy).toHaveBeenCalledWith(
+        expect.stringContaining('deleteTask'),
+      )
+      spy.mockRestore()
+    })
+  })
+
   // ─── Req 4.1, 4.2: persistencia y recuperación ──────────────────────────
   describe('getAll()', () => {
     it('devuelve [] cuando no hay datos almacenados (Req 4.1)', () => {

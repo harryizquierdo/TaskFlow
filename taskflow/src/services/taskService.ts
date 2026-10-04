@@ -95,4 +95,24 @@ export class TaskService {
     this.adapter.save(tasks)
     return true
   }
+
+  /**
+   * Elimina una tarea existente por su ID (Req 2.3, 2.5).
+   * Si el ID no existe registra el error y devuelve false (Req 2.5).
+   */
+  deleteTask(id: string): boolean {
+    const tasks = this.getAll()
+    const index = tasks.findIndex((t) => t.id === id)
+
+    if (index === -1) {
+      console.error(
+        `[TaskService] deleteTask: No se encontró la tarea con id "${id}".`,
+      )
+      return false
+    }
+
+    tasks.splice(index, 1)
+    this.adapter.save(tasks)
+    return true
+  }
 }

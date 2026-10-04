@@ -53,3 +53,20 @@
   font-size: 0.75rem;
   color: #9ca3af;
 }
+
+/* Botón de eliminación para tareas completadas (Req 2.1) */
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+}

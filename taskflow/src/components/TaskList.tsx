@@ -6,6 +6,7 @@ interface TaskListProps {
   tasks: Task[]
   filter: FilterState
   onToggle: (id: string) => void
+  onDelete: (id: string) => void
 }
 
 /**
@@ -13,7 +14,7 @@ interface TaskListProps {
  * Renderiza un estado vacío informativo si no hay tareas para el filtro (Req 3.2).
  * Requirements: 1.3, 3.1, 3.2
  */
-export function TaskList({ tasks, filter, onToggle }: TaskListProps) {
+export function TaskList({ tasks, filter, onToggle, onDelete }: TaskListProps) {
   const filtered = tasks.filter((task) => {
     if (filter === 'pending') return !task.completed
     if (filter === 'completed') return task.completed
@@ -44,7 +45,7 @@ export function TaskList({ tasks, filter, onToggle }: TaskListProps) {
       aria-label={`Lista de tareas: ${filter === 'all' ? 'todas' : filter === 'pending' ? 'pendientes' : 'completadas'}`}
     >
       {filtered.map((task) => (
-        <TaskItem key={task.id} task={task} onToggle={onToggle} />
+        <TaskItem key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
       ))}
     </ul>
   )
